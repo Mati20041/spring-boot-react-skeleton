@@ -1,0 +1,10 @@
+frontend/
+.gradle/
+gradle/
+.dockerignore
+.gitignore
+build.gradle
+gradlew*
+README.md
+settings.gradle
+spring-react-skeleton.iml

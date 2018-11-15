@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  java-app:
+    image: java-app
+    build: .
+    ports:
+      - 8080:8080
+  nginx:
+    image: nginx
+    ports:
+      - 8082:80
+  prerender:
+    image: magnetme/prerender-docker
+    ports:
+      - 8081:3000
