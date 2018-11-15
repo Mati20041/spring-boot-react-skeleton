@@ -1,0 +1,27 @@
+plugins {
+    id "com.moowork.node" version "1.2.0"
+}
+
+task bundle(type: YarnTask) {
+    inputs.dir('src')
+    inputs.files('.babelrc', 'tsconfig.json', 'webpack.config.json')
+    outputs.dir('dist')
+    args = ['build']
+}
+
+task start(type: YarnTask) {
+    args = ['start']
+}
+
+task clean(type: Delete) {
+    delete 'node_modules', 'dist'
+}
+task yarnInstall(type: YarnTask) {
+    inputs.files('package.json','yarn.lock')
+    outputs.dir('node_modules')
+    args = []
+}
+
+start.dependsOn(yarnInstall)
+bundle.dependsOn(yarnInstall)
+
