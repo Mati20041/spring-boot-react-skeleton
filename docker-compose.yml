@@ -6,11 +6,23 @@ services:
     build: .
     ports:
       - 8080:8080
+    networks:
+      - reactnetwork
   nginx:
     image: nginx
     ports:
       - 8082:80
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - reactnetwork
   prerender:
     image: magnetme/prerender-docker
     ports:
       - 8081:3000
+    networks:
+      - reactnetwork
+
+networks:
+  reactnetwork:
+    name: reactnetwork
